@@ -43,9 +43,10 @@ $(document).ready(function(){
 
 		if (diff ==0) {feedback = 'You Win!!!  Start a New Game to Play Again'; gameOver = true;}
 		else if (diff <5) {feedback = "Burning Up!"}
-		else if (diff <=10) { feedback = 'Very Hot!'}
-		else if (diff <=20) {feedback = "Hot!"}
-		else if (diff <= 30) {feedback = "Warm!"}
+		else if (diff <10) {feedback = 'Very Hot!'}
+		else if (diff <15) {feedback = 'Hot!'}
+		else if (diff <=20) {feedback = "Warm!"}
+		else if (diff <= 30) {feedback = "Luke warm!"}
 		else if (diff <= 50) {feedback = "Cold..." }
 		else {feedback = 'Very Cold..Brrr!'};
 
