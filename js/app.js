@@ -1,21 +1,28 @@
 
 $(document).ready(function(){
 	
-	/*--- Display information modal box ---*/
+	/*-- Display information modal box --*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
   	});
 
-  	/*--- Hide information modal box ---*/
+  	/*-- Hide information modal box --*/
   	$("a.close").click(function(){
   		$(".overlay").fadeOut(1000);
   	});
 
   	
-  	/*--- Hide gameOver modal box ---*/
+  	/*-- Hide gameOver modal box & reset for new game --*/
   	$("a.closeGameOver").click(function(){
   		$(".gameOver").fadeOut(1000);
+  		newGame();
   	});
+
+  	/*-- reset when new game clicked --*/
+  	$(".new").click(function(){
+		newGame();
+  	});
+	
 
 	// Returns a random integer between min (included) and max (included)
 	// Using Math.round() will give you a non-uniform distribution!
@@ -25,6 +32,7 @@ $(document).ready(function(){
 	  return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
+	/*-- Validate user input --*/
 	function validUserInput (num) {
 		if (isNaN(num) || (num % 1 != 0) || (num <=0)) {
 			return false;		// Not a Number, or not an int, or not positive
@@ -34,7 +42,7 @@ $(document).ready(function(){
 		};
 	};
 
-
+    /*-- provide feedback to user about their guess --*/
 	function provideFeedback(guess,target) {
 		var feedback = "";
 		var gameOver = false;
@@ -63,12 +71,13 @@ $(document).ready(function(){
 		return gameOver;
 	};
 
+	/*-- initialize global vars --*/
 	var numToGuess = 0;
 	var guessCount = 0;
 	var currentGuess = 0;
 	var userWon = false;
 
-
+	/*-- set up for a new game --*/
 	function newGame() {
 		numToGuess = getRandomIntInclusive(1,100);
 		console.log('Target = ' + numToGuess);
@@ -82,12 +91,7 @@ $(document).ready(function(){
 	
 	};
 
-  	$(".new").click(function(){
-  		event.preventDefault();
-		newGame();
-  	});
-	
-
+	/*-- begin by starting a new game and listening for user input --*/
   	newGame();
 	$('form').submit (function (event) {
 			event.preventDefault();
